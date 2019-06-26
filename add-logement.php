@@ -41,6 +41,18 @@ if (!empty($_POST)) {
         throw new Exception('Le champ cp est incorrect (> 100 000).');
     }
 
+    if (!isset($_POST['surface'])) {
+        throw new Exception('Le champ surface est vide.');
+    }
+
+    if ($_POST['surface'] < 1000) {
+        throw new Exception('Le champ surface est incorrect (< 1 000).');
+    }
+
+    if ($_POST['surface'] > 99999999) {
+        throw new Exception('Le champ surface est incorrect (> 100 000).');
+    }
+
     if (!isset($_POST['prix'])) {
         throw new Exception('Le champ prix est vide.');
     }
@@ -72,8 +84,8 @@ if (!empty($_POST)) {
         throw new Exception('Le champ type est incorrect');
     }
 
-    $request = 'INSERT INTO logement(titre, adresse, ville, cp, prix, photo, type, description)
-                VALUES (:titre, :adresse, :ville, :cp, :prix, :photo, :type, :description)';
+    $request = 'INSERT INTO logement(titre, adresse, ville, cp, surface, prix, photo, type, description)
+                VALUES (:titre, :adresse, :ville, :cp, :surface, :prix, :photo, :type, :description)';
 
     $response = $bdd->prepare($request);
 
@@ -169,6 +181,7 @@ if (!empty($_POST)) {
                     <input name="adresse" placeholder="adresse" type="text" class="form-control">
                     <input name="ville" placeholder="ville" type="text" class="form-control">
                     <input name="cp" placeholder="cp" type="text" class="form-control">
+                    <input name="surface" placeholder="surface" type="text" class="form-control">
                     <input name="prix" placeholder="prix" type="text" class="form-control">
                     <input name="photo" placeholder="photo" type="file" class="form-control">
 
