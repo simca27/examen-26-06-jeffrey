@@ -13,32 +13,32 @@ if (!empty($_POST)) {
         throw new Exception('Le champ titre est trop long.');
     }
 
-    if (!isset($_POST['adresse_vendeur'])) {
-        throw new Exception('Le champ adresse_vendeur est vide.');
+    if (!isset($_POST['adresse'])) {
+        throw new Exception('Le champ adresse est vide.');
     }
 
-    if (strlen($_POST['adresse_vendeur']) > 255) {
-        throw new Exception('Le champ adresse_vendeur est trop long.');
+    if (strlen($_POST['adresse']) > 255) {
+        throw new Exception('Le champ adresse est trop long.');
     }
 
-    if (!isset($_POST['ville_vendeur'])) {
-        throw new Exception('Le champ ville_vendeur est vide.');
+    if (!isset($_POST['ville'])) {
+        throw new Exception('Le champ ville est vide.');
     }
 
-    if (strlen($_POST['ville_vendeur']) > 150) {
+    if (strlen($_POST['ville']) > 150) {
         throw new Exception('Le champ titre est trop long.');
     }
 
-    if (!isset($_POST['cp_vendeur'])) {
-        throw new Exception('Le champ cp_vendeur est vide.');
+    if (!isset($_POST['cp'])) {
+        throw new Exception('Le champ cp est vide.');
     }
 
-    if ($_POST['cp_vendeur'] < 1000) {
-        throw new Exception('Le champ cp_vendeur est incorrect (< 1 000).');
+    if ($_POST['cp'] < 1000) {
+        throw new Exception('Le champ cp est incorrect (< 1 000).');
     }
 
-    if ($_POST['cp_vendeur'] > 100000) {
-        throw new Exception('Le champ cp_vendeur est incorrect (> 100 000).');
+    if ($_POST['cp'] > 99999999) {
+        throw new Exception('Le champ cp est incorrect (> 100 000).');
     }
 
     if (!isset($_POST['prix'])) {
@@ -72,16 +72,17 @@ if (!empty($_POST)) {
         throw new Exception('Le champ type est incorrect');
     }
 
-    $request = 'INSERT INTO produit(titre, adresse_vendeur, ville_vendeur, cp_vendeur, prix, photo, type, description)
-                VALUES (:titre, :adresse_vendeur, :ville_vendeur, :cp_vendeur, :prix, :photo, :type, :description)';
+    $request = 'INSERT INTO logement(titre, adresse, ville, cp, prix, photo, type, description)
+                VALUES (:titre, :adresse, :ville, :cp, :prix, :photo, :type, :description)';
 
     $response = $bdd->prepare($request);
 
     $response->execute([
         'titre'             => $_POST['titre'],
-        'adresse_vendeur'   => $_POST['adresse_vendeur'],
-        'ville_vendeur'     => $_POST['ville_vendeur'],
-        'cp_vendeur'        => $_POST['cp_vendeur'],
+        'adresse'   => $_POST['adresse'],
+        'ville'     => $_POST['ville'],
+        'cp'        => $_POST['cp'],
+        'surface'   => $_POST['surface'],
         'prix'              => $_POST['prix'],
         'type'              => $_POST['type'],
         'description'       => $_POST['description'],
@@ -162,12 +163,12 @@ if (!empty($_POST)) {
 
                 <a class="btn btn-primary btn-sm" href="index.php">Retour</a>
 
-                <form action="add-produit.php" method="post" class="form" enctype="multipart/form-data">
+                <form action="add-logement.php" method="post" class="form" enctype="multipart/form-data">
 
                     <input name="titre" placeholder="titre" type="text" class="form-control">
-                    <input name="adresse_vendeur" placeholder="adresse_vendeur" type="text" class="form-control">
-                    <input name="ville_vendeur" placeholder="ville_vendeur" type="text" class="form-control">
-                    <input name="cp_vendeur" placeholder="cp_vendeur" type="text" class="form-control">
+                    <input name="adresse" placeholder="adresse" type="text" class="form-control">
+                    <input name="ville" placeholder="ville" type="text" class="form-control">
+                    <input name="cp" placeholder="cp" type="text" class="form-control">
                     <input name="prix" placeholder="prix" type="text" class="form-control">
                     <input name="photo" placeholder="photo" type="file" class="form-control">
 

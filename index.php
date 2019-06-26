@@ -17,8 +17,8 @@
         <div class="row mt-3">
             <div class="col-12">
                 <ul>
-                    <li><a href="list-produits.php">Liste des produits</a></li>
-                    <li><a href="add-produit.php">Ajout de produits</a></li>
+                    <li><a href="list-logement.php">Liste des logement</a></li>
+                    <li><a href="add-logement.php">Ajout de logement</a></li>
                 </ul>
             </div>
         </div>

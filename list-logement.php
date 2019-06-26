@@ -2,7 +2,7 @@
 
 require 'pdo.php';
 
-$request = 'SELECT * FROM produit';
+$request = 'SELECT * FROM logement';
 
 $response = $bdd->query($request);
 
@@ -34,9 +34,9 @@ $produits = $response->fetchAll(PDO::FETCH_ASSOC);
                         <tr>
                             <th>id</th>
                             <th>titre</th>
-                            <th>adresse_vendeur</th>
-                            <th>ville_vendeur</th>
-                            <th>cp_vendeur</th>
+                            <th>adresse</th>
+                            <th>ville</th>
+                            <th>cp</th>
                             <th>prix</th>
                             <th>photo</th>
                             <th>type</th>
@@ -49,11 +49,11 @@ $produits = $response->fetchAll(PDO::FETCH_ASSOC);
                         <?php foreach ($produits as $p) : ?>
 
                             <tr>
-                                <td><?= $p['id'] ?></td>
+                                <td><?= $p['id_logement'] ?></td>
                                 <td><?= $p['titre'] ?></td>
-                                <td><?= $p['adresse_vendeur'] ?></td>
-                                <td><?= $p['ville_vendeur'] ?></td>
-                                <td><?= $p['cp_vendeur'] ?></td>
+                                <td><?= $p['adresse'] ?></td>
+                                <td><?= $p['ville'] ?></td>
+                                <td><?= $p['cp'] ?></td>
                                 <td><?= $p['prix'] ?></td>
                                 <td><img src="uploads/<?= $p['photo'] ?>" height="100"></td>
                                 <td><?= $p['type'] ?></td>
